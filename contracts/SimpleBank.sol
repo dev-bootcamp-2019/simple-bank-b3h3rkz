@@ -76,7 +76,7 @@ contract SimpleBank {
           then return the balance of the user */
           require((balances[msg.sender] + msg.value) >= balances[msg.sender]);
           balances[msg.sender] += msg.value;
-          emit LogDeposit(msg.sender, msg.value);
+          emit LogDepositMade(msg.sender, msg.value);
           return balances[msg.sender];
  
     }
@@ -92,8 +92,8 @@ contract SimpleBank {
            to the user attempting to withdraw. 
            */
         require(balances[msg.sender] >= withdrawAmount);
-        balances[msg.sender] -=  withdrawamount;
-        msg.sender.transfer(withdrawamount);
+        balances[msg.sender] -=  withdrawAmount;
+        msg.sender.transfer(withdrawAmount);
         emit LogWithdrawal(msg.sender, withdrawAmount, msg.sender.balance);
         return balances[msg.sender];
     }
