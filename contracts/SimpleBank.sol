@@ -79,7 +79,7 @@ contract SimpleBank {
           balances[user] += msg.value;
 
           emit LogDepositMade(user, msg.value);
-          return balances[user];
+          return msg.sender.balance;
     }
 
     /// @notice Withdraw ether from bank
@@ -96,7 +96,8 @@ contract SimpleBank {
             balances[msg.sender] -= withdrawAmount;
             msg.sender.transfer(withdrawAmount);
         }
-        return balances[msg.sender];
+        emit LogWithdrawal(msg.sender, withdrawAmount, msg.sender.balance)
+        return msg.sender.balance;
     }
 
     // Fallback function - Called if other functions don't match call or
