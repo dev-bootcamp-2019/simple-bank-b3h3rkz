@@ -62,7 +62,7 @@ contract SimpleBank {
     // Emit the appropriate event
     function enroll() public returns (bool){
         address user = msg.sender;
-        balances[user] = 1000;
+        balances[user] = 0;
         emit LogEnrolled(user);
         return true;
     }
