@@ -94,7 +94,7 @@ contract SimpleBank {
         require(balances[msg.sender] >= withdrawAmount);
         balances[msg.sender] -=  withdrawamount;
         msg.sender.transfer(withdrawamount);
-        emit LogWithdrawal(msg.sender, withdrawAmount, msg.sender.balance)
+        emit LogWithdrawal(msg.sender, withdrawAmount, msg.sender.balance);
         return balances[msg.sender];
     }
 
