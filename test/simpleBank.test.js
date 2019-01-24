@@ -8,6 +8,7 @@ with `npm install -g truffle`.
 */
 
 var SimpleBank = artifacts.require("./SimpleBank.sol");
+var BN = web3.utils.BN;
 
 contract('SimpleBank', function(accounts) {
 
@@ -58,7 +59,7 @@ contract('SimpleBank', function(accounts) {
     assert.equal(balance.toString(), initialAmount.toString(), 'balance incorrect after withdrawal, check withdraw method');
 
     const accountAddress = result.logs[0].args.accountAddress;
-    const newBalance = result.logs[0].args.newBalance.toNumber();
+    const newBalance = BN(result.logs[0].args.newBalance);
     const withdrawAmount = result.logs[0].args.withdrawAmount.toNumber();
 
     const expectedEventResult = {accountAddress: alice, newBalance: initialAmount, withdrawAmount: deposit};
